@@ -4,7 +4,27 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var inputParser = new InputParser();
+            var (maxX, maxY) = inputParser.ParseMarsData();
+            var mars = new Mars(maxX, maxY);
+
+            var robotsData = inputParser.ParseRobotsData();
+
+            foreach (var (x, y, direction, instructions) in robotsData)
+            {
+                var robot = new Robot(x, y, direction);
+
+                foreach (char c in instructions)
+                {
+                    if (robot.IsLost)
+                        break;
+
+                    var command = CommandFactory.GetCommand(c);
+                    command.Execute(robot, mars);
+                }
+
+                Console.WriteLine($"Output: {robot}");
+            }
         }
     }
 }
