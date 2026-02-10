@@ -62,7 +62,10 @@
 
             if (mars.IsOffSurface(nextX, nextY))
             {
-                mars.AddScent(robot.X, robot.Y, robot.Direction);
+                if (mars.HasScent(robot.X, robot.Y))
+                    return;
+
+                mars.AddScent(robot.X, robot.Y);
                 robot.IsLost = true;
 
                 return;

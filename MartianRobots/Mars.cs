@@ -16,7 +16,10 @@
         public bool IsOffSurface(int x, int y)
             => x < 0 || y < 0 || x > MaxX || y > MaxY;
 
-        public void AddScent(int x, int y, Direction direction)
-            => _scents.Add($"{x},{y},{direction}");
+        public void AddScent(int x, int y)
+            => _scents.Add($"{x},{y}");
+
+        public bool HasScent(int x, int y)
+            => _scents.Contains($"{x},{y}");
     }
 }
