@@ -1,6 +1,6 @@
 ﻿namespace MartianRobots
 {
-    public class CommandFactory
+    public static class CommandFactory
     {
         private static readonly Dictionary<char, ICommand> _commands = new()
         {
@@ -16,5 +16,7 @@
 
             return command;
         }
+
+        public static void AddCommand(char c, ICommand command) => _commands[c] = command;
     }
 }
