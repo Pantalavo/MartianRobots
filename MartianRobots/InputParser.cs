@@ -2,10 +2,19 @@ namespace MartianRobots
 {
     public class InputParser
     {
+        private readonly TextReader _reader;
+
+        public InputParser() : this(Console.In) { }
+
+        public InputParser(TextReader reader)
+        {
+            _reader = reader;
+        }
+
         // reads and validates the first line of input for Mars dimensions
         public (int maxX, int maxY) ParseMarsData()
         {
-            var input = Console.ReadLine()?.Split() ?? throw new InvalidOperationException("Error reading dimensions");
+            var input = _reader.ReadLine()?.Split() ?? throw new InvalidOperationException("Error reading dimensions");
             int maxX = int.Parse(input[0]);
             int maxY = int.Parse(input[1]);
 
@@ -20,7 +29,7 @@ namespace MartianRobots
         {
             while (true)
             {
-                var line = Console.ReadLine();
+                var line = _reader.ReadLine();
                 if (line is null)
                     break;
 
@@ -35,7 +44,7 @@ namespace MartianRobots
                 ValidateCoordinate(x);
                 ValidateCoordinate(y);
 
-                var instructions = Console.ReadLine()?.Trim() ?? "";
+                var instructions = _reader.ReadLine()?.Trim() ?? "";
                 ValidateInstructions(instructions);
 
                 yield return (x, y, direction, instructions);
