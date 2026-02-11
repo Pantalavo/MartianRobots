@@ -9,6 +9,7 @@
             var mars = new Mars(maxX, maxY);
 
             var robotsData = inputParser.ParseRobotsData();
+            var results = new List<string>();
 
             foreach (var (x, y, direction, instructions) in robotsData)
             {
@@ -23,8 +24,11 @@
                     command.Execute(robot, mars);
                 }
 
-                Console.WriteLine($"Output: {robot}");
+                results.Add(robot.ToString());
             }
+
+            foreach (var result in results)
+                Console.WriteLine(result);
         }
     }
 }
