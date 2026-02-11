@@ -1,6 +1,6 @@
 # MartianRobots
 
-A C# console application that simulates robots navigating the surface of Mars. 
+A console application that simulates robots navigating the surface of Mars. 
 Robots follow a sequence of instructions to move on a grid. If they move beyond the grid's boundaries, they are lost forever. 
 Lost robots leave a scent that prohibits future robots from dropping off at the same grid point.
 
@@ -15,7 +15,7 @@ Lost robots leave a scent that prohibits future robots from dropping off at the 
 The goal was to keep the code simple, modular and testable, whilst adhering to SOLID principles.
 
 - **Command and Factory Pattern** — each instruction is encapsulated as its own class implementing `ICommand`. New commands can be added without modifying existing code by creating a new `ICommand` implementation and adding it to the `CommandFactory`.
-- **Separation of Concerns** — `Mars` manages the grid and scent state, `Robot` holds direction, position and lost status. `InputParser` handles all input reading and validation.
+- **Separation of Concerns** — `Mars` class manages the grid and scent state, `Robot` class holds direction, position and lost status. `InputParser` class handles all input reading and validation.
 
 ## Input Format
 
@@ -71,4 +71,11 @@ Output:
 1 1 E
 3 3 N LOST
 2 3 S
+```
+
+## How to run tests
+
+```
+cd MartianRobots.Tests
+dotnet test
 ```
